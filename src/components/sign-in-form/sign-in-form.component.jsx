@@ -1,8 +1,9 @@
 import Button ,{ BUTTON_TYPE_CLASSES} from '../button/button.component';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import {  signInAuthUserWithEmailAndPassword, createUserDocumentFromAuth, signInWithGooglePopup , } from '../../utils/firebase/firebase.utils';
 import FormInput from '../form-input/form-input.component';
 import {SignInContainer, TextStyle, ButtonContainer} from './sign-in-form.styles.jsx'
+import { UserContext } from '../../contexts/user.context';
 
 
 const defaultFormFields = {
@@ -15,6 +16,7 @@ const SignInForm = () => {
 
     const [ formFields , setFormFields ] = useState (defaultFormFields);
     const { email, password} = formFields;
+    const {setCurrentUser} = useContext(UserContext)
 
     const resetFormFields = () => {
         setFormFields(defaultFormFields);
@@ -22,6 +24,7 @@ const SignInForm = () => {
     
     const signInWithGoogle = async () => {
         await signInWithGooglePopup();
+
    }
 
     const handleSubmit = async (event)=> {

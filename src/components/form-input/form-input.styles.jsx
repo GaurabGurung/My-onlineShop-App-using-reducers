@@ -1,9 +1,17 @@
 import { styled, css } from "styled-components"; 
+export const Group = styled.div`
+    position: relative; 
+    margin: 45px 0; 
+    input[type='password'] {
+        letter-spacing: 0.3em; 
+    }   
+`
 
 const subColor = 'grey';
 const mainColor = 'black';
 
 const shrinkLabelStyles = css` \\CSS block is used to create a css block and use it conditionally to other styled components
+    position: absolute;
     top: -14px; 
     font-size: 12px; 
     color: ${mainColor}; 
@@ -46,12 +54,5 @@ export const InputWithStyle= styled.input`
          However, the next or sequent sibling should be above the current one
         */       
     }
-`
-export const Group = styled.div`
-    position: relative; 
-    margin: 45px 0; 
-    input[type='password'] {
-        letter-spacing: 0.3em; 
-    }   
 `
 
