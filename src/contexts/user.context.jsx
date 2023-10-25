@@ -13,7 +13,11 @@ export const USER_ACTION_TYPES = {
     SET_CURRENT_USER : 'SET_CURRENT_USER'
 }
 
-export const userReducer = (state, action) => {
+const INITIAL_STATE = {
+    currentUser: null
+}
+
+const userReducer = (state, action) => {
 
 
     const {type, payload} = action;
@@ -29,9 +33,6 @@ export const userReducer = (state, action) => {
     }
 }
 
-const INITIAL_STATE = {
-    currentUser: null
-}
 
 export const UserProvider= ({children}) => {
 
