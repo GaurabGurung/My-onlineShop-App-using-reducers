@@ -2,13 +2,15 @@
 
 import './category.styles.scss';
 import { useParams } from 'react-router-dom'; // gives back the value as an object
-import { Fragment, useContext, useEffect, useState} from 'react';
-import { CategoriesContext } from '../../contexts/categories.context';
+import { Fragment, useEffect, useState} from 'react';
+
 import ProductCard from '../../components/Product-card/product-card.component';
+import { useSelector } from 'react-redux';
+import { selectCategoriesMap } from '../../store/categories/category.selector';
 
 const Category = () => {
     const { category } = useParams(); //useParams : Returns an object of key/value pairs of the dynamic params from the current URL that were matched by the route path.
-    const { categoriesMap } = useContext(CategoriesContext);
+    const categoriesMap = useSelector(selectCategoriesMap)
     const [ products, setProducts] = useState(categoriesMap[category])
 
     useEffect(()=> {

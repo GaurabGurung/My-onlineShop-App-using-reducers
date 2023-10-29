@@ -3,12 +3,25 @@ import logger from 'redux-logger';
 
 import { rootReducer } from './root-reducer';
 
+const LoggerMiddleWares = (store) => (next) => (action) => {
+
+  if (!action.type){
+    return next(action);
+  }
+
+  console.log('type: ', action.type);
+  console.log('payload', action.payload);
+  console.log('current state: ', store.getState());
+
+  next(action);
+
+  console.log('next state:', store.getState());
+}
 
 
+const middleWares = [LoggerMiddleWares];
 
-const middelWares = [logger];
-
-const composedEnhancers = compose(applyMiddleware(...middelWares))
+const composedEnhancers = compose(applyMiddleware(...middleWares))
 
 export const store = createStore(rootReducer, undefined, composedEnhancers) 
 /**
@@ -24,8 +37,8 @@ export const store = createStore(rootReducer, undefined, composedEnhancers)
     and then how the state in turn looks after the action 
 
     Middlewares are kind of like little library helpers that run before an action hits the reducer. 
-    So whenever you dispatch an action, before that action hits the reducers, it hits the middelware first. 
-    So inorder to use the logger, we use middleware where we put the imprted logger method 
+    So whenever you dispatch an action, before that action hits the reducers, it hits the middleware first. 
+    So inorder to use the logger, we use middleware where we put the imported logger method 
 
     Inorder for these middleware to work, we have to call applyMiddleware. So we can say, 
     "hey these middlewares are actually something like enhancers" So in order for this to work,

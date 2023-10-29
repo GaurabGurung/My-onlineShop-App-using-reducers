@@ -78,7 +78,7 @@ const SignInForm = () => {
                     value = {password} 
                 />
                 <ButtonContainer>
-                    < Button type = 'submit'>
+                    <Button type = 'submit'>
                         Sign in
                     </Button>
                     <Button 
