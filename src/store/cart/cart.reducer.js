@@ -2,8 +2,6 @@ import { CART_ACTION_TYPES } from "./cart.types"
 
 const CART_INITITAL_STATE = {
     isCartOpen : false ,
-    cartCount: 0,
-    cartTotal: 0,
     cartItems: []
 }
 
