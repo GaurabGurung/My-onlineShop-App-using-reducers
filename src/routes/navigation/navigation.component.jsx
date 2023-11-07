@@ -3,20 +3,22 @@ import CartIcon from '../../components/cart-icon/cart-icon.component';
 import CartDropdown from '../../components/cart-dropdown/cart-dropdown.component';
 import { Outlet } from 'react-router-dom';
 import {NavigationContainer, NavLink, NavLinks, LogoContainer} from './navigation.styles';
-import { Fragment, useContext } from 'react';
+import { Fragment } from 'react';
+
+import { selectIsCartOpen } from '../../store/cart/cart.selector';
+
 import { signOutUser } from '../../utils/firebase/firebase.utils';
-import { CartContext } from '../../contexts/cart.context';
 import { useSelector } from 'react-redux/es/hooks/useSelector';
 import { selectCurrentUser } from '../../store/user/user.selector';
 
 const Navigation = () => {
-  const currentUser = useSelector(selectCurrentUser)
+  const currentUser = useSelector(selectCurrentUser);
+  const isCartOpen = useSelector(selectIsCartOpen);
 /**
   useSelector is a hook that you pass a selector function,
   a selector function is something that essentially extracts off that
   the values that you want from the whole entire Redux store
  */
-    const { isCartOpen} =useContext(CartContext)
     return (
         <Fragment>
           <NavigationContainer>
